@@ -1,0 +1,867 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600&display=swap');
+*{
+    padding: 0;
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    box-sizing: border-box;
+}
+body{
+    width: 100%;
+    height: 100vh;
+    overflow: auto;
+    background-color: #1d1d1d;
+}
+/* Gaya dasar untuk navbar */
+nav {
+    width: 100%;
+    height: 10vh;
+    position: fixed; /* Navbar tetap di atas */
+    top: 0;
+    z-index: 1000; /* Pastikan navbar berada di atas elemen lainnya */
+    background-color: rgba(27, 27, 27, 0.8); /* Warna latar belakang dengan transparansi */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Tambahkan bayangan */
+    transition: transform 0.5s ease, opacity 0.5s ease; /* Transisi halus */
+}
+
+/* Navbar terlihat tanpa transisi di Home */
+nav.home {
+    transform: translateY(0); /* Navbar tetap di posisi semula */
+    opacity: 1; /* Navbar terlihat */
+}
+
+/* Navbar muncul dengan transisi setelah scroll */
+nav.scrolled {
+    background-color: rgba(27, 27, 27, 1); /* Warna latar belakang solid */
+    transform: translateY(0); /* Navbar tetap di posisi semula */
+    opacity: 1; /* Navbar terlihat */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); /* Tambahkan bayangan lebih tegas */
+}
+/* Gaya untuk kontainer navbar */
+.nav-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding-right: 150px;
+}
+
+/* Gaya untuk link di navbar */
+.nav-container .links {
+    display: flex;
+    margin-top: 0px; /* Tambahkan jarak dari atas */
+}
+
+.nav-container .links a {
+    position: relative;
+    font-size: 1rem;
+    color: white;
+    margin: 15px;
+    text-decoration: none;
+    font-weight: 400;
+    transition: 0.3s linear;
+}
+
+.nav-container .links a::before {
+    position: absolute;
+    content: "";
+    bottom: -3px;
+    left: 0;
+    width: 0%;
+    height: 1px;
+    background-color: #a009a0;
+    transition: 0.2s ease;
+}
+
+.nav-container .links a:hover {
+    color: #a009a0; /* Warna teks berubah saat hover */
+    text-shadow: 0 0 10px #a009a0, 0 0 20px #a009a0; /* Efek glow pada teks */
+}
+
+.nav-container .links a:hover::before {
+    width: 100%;
+}
+section{
+    width: 100%;
+    height: 100vh;
+}
+.main-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: flex-start; /* Posisikan elemen ke kiri */
+    align-items: center; /* Posisikan elemen ke tengah secara vertikal */
+    padding-left: 100px; /* Tambahkan jarak dari sisi kiri jika diperlukan */
+    padding-top: 50px; /* Tambahkan jarak dari atas */
+}
+.main-container .image{
+    width: 500px;
+    height: 80vh;
+    border-radius: 40%;
+    overflow: hidden;
+    box-shadow: 0 0 40px #077b32;
+}
+.main-container .image img{
+    width: 100%;
+}
+.main-container .image:hover{
+    animation: animate 1.5s ease-in-out infinite;
+}
+@keyframes animate {
+    0%{
+        scale: 1;
+    }
+    50%{
+        scale: 1.05;
+    }
+    100%{
+        scale: 1;
+    }
+}
+.main-container .content {
+    color: #ffffff; /* Warna teks putih */
+    width: 50%; /* Lebar konten lebih kecil */
+    min-height: 120px; /* Tinggi minimum lebih kecil */
+    padding: 20px; /* Tambahkan ruang di dalam */
+    border-left: none; /* Hapus garis dekorasi di kiri */
+    background: none; /* Hapus latar belakang */
+    border-radius: 0; /* Hapus sudut melengkung */
+    box-shadow: none; /* Hapus bayangan */
+    transition: transform 0.3s ease; /* Transisi halus */
+}
+
+.main-container .content:hover {
+    transform: translateY(10px); /* Efek melayang saat hover */
+}
+
+.content h1 {
+    font-size: clamp(2rem, 2.5rem + 1vw, 3rem); /* Ukuran responsif lebih kecil */
+    font-weight: 700; /* Teks lebih tebal */
+    margin-bottom: 15px; /* Tambahkan jarak bawah */
+    line-height: 1.3; /* Jarak antar baris */
+    color: #ffffff; /* Warna teks putih */
+    text-transform: capitalize; /* Huruf kapital di awal kata */
+    letter-spacing: 1.5px; /* Jarak antar huruf */
+    text-shadow: 0 0 10px rgba(155, 89, 182, 0.5); /* Efek glow lembut */
+    transition: transform 0.3s ease, color 0.3s ease; /* Transisi halus */
+}
+
+.content h1:hover {
+    transform: scale(1.05); /* Sedikit perbesar teks saat hover */
+}
+
+.content h1 span {
+    color: #9b59b6; /* Warna aksen ungu lembut */
+    font-weight: bold; /* Tambahkan ketebalan */
+    text-shadow: 0 0 10px #9b59b6; /* Efek glow */
+}
+
+.content p {
+    font-size: clamp(0.9rem, 1rem + 0.5vw, 1.3rem); /* Ukuran responsif lebih kecil */
+    margin: 10px 0; /* Tambahkan jarak atas dan bawah */
+    line-height: 1.7; /* Jarak antar baris lebih kecil */
+    text-align: justify; /* Rata kanan-kiri */
+    color: #e0e0e0; /* Warna teks lebih lembut */
+    border-bottom: none; /* Hapus garis bawah */
+    padding-bottom: 0; /* Hapus jarak dari garis bawah */
+    transition: color 0.3s ease, transform 0.3s ease; /* Transisi halus */
+}
+
+.content p:hover {
+    color: #ffffff; /* Ubah warna teks saat hover */
+    transform: scale(1.02); /* Sedikit perbesar teks saat hover */
+}
+.content .typewriter {
+    font-size: clamp(1.2rem, 1.8rem + 1vw, 2.5rem); /* Ukuran teks */
+    font-weight: 600; /* Teks sedikit lebih tebal */
+    color: #ffffff; /* Warna dasar teks */
+    white-space: normal; /* Izinkan teks untuk membungkus */
+    overflow: visible; /* Tampilkan semua teks */
+    display: inline-block; /* Tetap inline */
+    border-right: none; /* Hapus garis berkedip */
+    animation: none; /* Hapus animasi */
+}
+
+.content .typewriter span {
+    color: #9b59b6; /* Warna ungu untuk teks */
+    text-shadow: 0 0 8px #9b59b6, 0 0 15px rgba(155, 89, 182, 0.5); /* Efek glow */
+    animation: none; /* Hapus animasi perubahan warna */
+}
+
+/* Hapus animasi terkait typewriter */
+@keyframes typing {
+    from {
+        width: 0;
+    }
+    to {
+        width: 100%;
+    }
+}
+
+@keyframes blink {
+    from, to {
+        border-color: transparent;
+    }
+    50% {
+        border-color: #ffffff;
+    }
+}
+.social-links i {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 3rem; /* Ukuran ikon yang proporsional */
+    height: 3rem; /* Ukuran ikon yang proporsional */
+    background-color: transparent;
+    border-radius: 50%;
+    color: #8b8b8b;
+    margin: 8px 8px; /* Jarak antar ikon */
+    font-size: 1.5rem; /* Ukuran teks/icon di dalam */
+    transition: all 0.3s ease;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.2); /* Tambahkan bayangan awal */
+    border: 2px solid transparent; /* Stroke awal transparan */
+}
+
+.social-links i:hover {
+    color: #ffffff; /* Ubah warna teks saat hover */
+    background-color: #a009a0; /* Ubah warna latar belakang */
+    border: 2px solid #a009a0; /* Tambahkan warna stroke */
+    box-shadow: 0 0 15px #a009a0, 0 0 30px #a009a0; /* Efek bercahaya di stroke */
+    transform: scale(1.1); /* Zoom-in saat hover */
+}
+.content button {
+    width: 30%; /* Lebar tombol tetap */
+    height: 50px; /* Tinggi tombol lebih besar */
+    margin: 25px;
+    background-color: #a009a0;
+    color: #ffffff;
+    border: 1px solid #a009a0;
+    outline: none;
+    font-size: 120%; /* Ukuran teks tetap */
+    font-weight: 700;
+    border-radius: 5px;
+    transition: 0.2s linear;
+    animation: pulse 1.5s infinite; /* Tambahkan animasi denyut nadi */
+}
+@keyframes pulse {
+    0% {
+        transform: scale(1); /* Ukuran normal */
+    }
+    50% {
+        transform: scale(1.1); /* Sedikit membesar */
+    }
+    100% {
+        transform: scale(1); /* Kembali ke ukuran normal */
+    }
+}
+.content button:hover{
+    scale: 1.2;
+    color: #a009a0;
+    border: 2px solid #a009a0;
+    background-color: transparent;
+    font-weight: 700;
+}
+/* Gaya untuk section Services */
+#about {
+    width: 100%;
+    padding: 50px 20px;
+    background-color: #1d1d1d; /* Warna latar belakang */
+    text-align: center;
+    box-sizing: border-box;
+}
+
+/* Gaya untuk judul */
+#about .center-text h2 {
+    font-size: 2rem;
+    color: #ffffff;
+    margin-bottom: 30px;
+    margin-top: 40px; /* Tambahkan jarak atas */
+}
+
+#about .center-text h2 span {
+    color: #a009a0; /* Warna aksen */
+}
+
+/* Kontainer untuk layanan */
+#about .about-content {
+    display: flex;
+    justify-content: center;
+    gap: 30px; /* Jarak antar box */
+    flex-wrap: wrap; /* Agar responsif */
+}
+
+/* Gaya untuk setiap box layanan */
+#about .about-box {
+    background-color: rgba(0, 0, 0, 0.1); /* Warna #a009a0 dengan transparansi 80% */
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    width: 300px; /* Lebar tetap untuk setiap box */
+    text-align: center;
+    border: 2px solid #a009a0;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+    color: #fff; /* Warna teks putih agar kontras dengan latar belakang */
+}
+
+/* Efek hover untuk box layanan */
+#about .about-box:hover {
+    transform: scale(1); /* Perbesar box saat hover */
+    color: #a009a0; /* Ubah warna teks */
+    border: 2px solid #a009a0; /* Tambahkan border */
+    background-color: transparent; /* Ubah latar belakang menjadi transparan */
+    font-weight: 700; /* Tambahkan ketebalan teks */
+    box-shadow: 0 0 40px #a009a0; /* Tambahkan efek glow */
+}
+
+/* Gaya untuk gambar */
+#about .about-box img {
+    width: 80px; /* Lebar gambar lebih kecil */
+    height: 80px; /* Tinggi gambar lebih kecil */
+    border-radius: 10px;
+    margin-bottom: 0; /* Hilangkan margin bawah jika tidak diperlukan */
+    object-fit: cover; /* Pastikan gambar tetap proporsional */
+}
+
+/* Gaya untuk judul layanan */
+#about .about-box h3 {
+    font-size: 1.5rem;
+    color: #ffffff;
+    margin-bottom: 1px;
+}
+
+/* Gaya untuk deskripsi layanan */
+#about .about-box p {
+    font-size: 1rem;
+    color: #ffffff;
+    line-height: 1.6;
+    margin-bottom: 15px;
+}
+
+/* Gaya untuk tombol link */
+#about .about-box a {
+    font-size: 1rem;
+    color: #ffffff; /* Warna teks awal */
+    text-decoration: none; /* Hilangkan garis bawah default */
+    font-weight: bold;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    position: relative; /* Untuk efek garis bawah animasi */
+    transition: color 0.3s ease; /* Transisi halus untuk warna */
+}
+
+/* Efek hover untuk link */
+#about .about-box a:hover {
+    color: #a009a0; /* Warna teks berubah saat hover */
+    text-shadow: 0 0 10px #a009a0, 0 0 20px #a009a0; /* Efek glow pada teks */
+}
+
+/* Garis bawah animasi */
+#about .about-box a::after {
+    content: ""; /* Tambahkan elemen dekorasi */
+    position: absolute;
+    bottom: -2px; /* Posisikan di bawah teks */
+    left: 0;
+    width: 0%; /* Awalnya garis tidak terlihat */
+    height: 1px; /* Ketebalan garis */
+    background-color: #a009a0; /* Warna garis */
+    transition: width 0.3s ease; /* Animasi lebar garis */
+}
+
+/* Animasi garis bawah saat hover */
+#about .about-box a:hover::after {
+    width: 100%; /* Garis muncul penuh saat hover */
+}
+
+#About .about-box a:hover {
+    color: #ffffff;
+}
+/* Gaya untuk section Project */
+#project {
+    width: 100%;
+    padding: 50px 20px;
+    background-color: #1d1d1d; /* Warna latar belakang */
+    text-align: center;
+    box-sizing: border-box;
+}
+
+/* Gaya untuk judul */
+#project .center-text h2 {
+    font-size: 2rem;
+    color: #ffffff;
+    margin-bottom: 30px;
+    margin-top: 40px; /* Tambahkan jarak atas */
+}
+
+#project .center-text h2 span {
+    color: #a009a0; /* Warna aksen */
+}
+
+/* Kontainer untuk project */
+#project .project-content {
+    display: flex;
+    justify-content: center;
+    gap: 30px; /* Jarak antar box */
+    flex-wrap: wrap; /* Agar responsif */
+}
+
+/* Gaya untuk setiap box project */
+#project .project-box {
+    background-color: rgba(0, 0, 0, 0.1); /* Transparansi */
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    padding: 20px; /* Tambahkan padding seperti about box */
+    width: 300px; /* Lebar tetap untuk setiap box */
+    text-align: left;
+    border: 2px solid #a009a0; /* Tambahkan border */
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+    color: #fff; /* Warna teks putih agar kontras dengan latar belakang */
+}
+
+/* Efek hover untuk box project */
+#project .project-box:hover {
+    transform: scale(1); /* Perbesar box saat hover */
+    color: #a009a0; /* Ubah warna teks */
+    border: 2px solid #a009a0; /* Tambahkan border */
+    background-color: transparent; /* Ubah latar belakang menjadi transparan */
+    font-weight: 700; /* Tambahkan ketebalan teks */
+    box-shadow: 0 0 40px #a009a0; /* Tambahkan efek glow */
+}
+
+/* Gaya untuk gambar di dalam project box */
+#project .project-box img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover; /* Pastikan gambar tetap proporsional */
+    border-radius: 10px; /* Tambahkan sudut melengkung */
+    margin-bottom: 15px; /* Tambahkan jarak bawah gambar */
+}
+
+/* Gaya untuk judul project */
+#project .project-info h3 {
+    font-size: 1.5rem;
+    color: #ffffff;
+    margin-bottom: 10px;
+}
+
+/* Gaya untuk deskripsi project */
+#project .project-info p {
+    font-size: 1rem;
+    color: #ffffff;
+    line-height: 1.6;
+    margin-bottom: 15px;
+}
+
+/* Gaya untuk kategori project */
+#project .project-info .project-category {
+    font-size: 0.9rem;
+    color: #a009a0; /* Warna aksen */
+    margin-bottom: 5px;
+}
+
+/* Gaya untuk tanggal project */
+#project .project-info small {
+    font-size: 0.8rem;
+    color: #ffffff;
+}
+/* Gaya untuk footer */
+footer {
+    background-color: #1b1b1b; /* Warna latar belakang footer */
+    color: #fff; /* Warna teks footer */
+    text-align: left; /* Pusatkan teks */
+    padding: 20px 0; /* Tambahkan ruang di atas dan bawah */
+    font-size: 1rem; /* Ukuran teks */
+    margin-top: 200px; /* Tambahkan jarak dari konten sebelumnya */
+    padding-left: 60px; /* Tambahkan jarak dari sisi kiri */
+}
+
+footer p {
+    margin: 0; /* Hilangkan margin default */
+    font-weight: 400; /* Berat teks normal */
+}
+/* Gaya untuk tombol panah ke atas */
+.back-to-top {
+    position: fixed;
+    bottom: 30px; /* Jarak dari bawah */
+    right: 30px; /* Jarak dari kanan */
+    width: 50px;
+    height: 50px;
+    background-color: #a009a0; /* Warna latar belakang */
+    color: #fff; /* Warna ikon */
+    border-radius: 50%; /* Membuat tombol berbentuk lingkaran */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Tambahkan bayangan */
+    opacity: 0; /* Awalnya tombol tidak terlihat */
+    visibility: hidden; /* Sembunyikan tombol */
+    transition: opacity 0.3s ease, visibility 0.3s ease; /* Transisi halus */
+    z-index: 1000; /* Pastikan tombol berada di atas elemen lainnya */
+}
+
+/* Tampilkan tombol saat aktif */
+.back-to-top.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Efek hover pada tombol */
+.back-to-top:hover {
+    background-color: #a009a0; /* Ubah warna latar belakang */
+    color: #ffffff; /* Ubah warna ikon */
+    box-shadow: 0 0 20px #a009a0; /* Tambahkan efek glow */
+}
+.main-container .content span2{
+    color: #00ffff;
+    text-shadow: 0 0 10px #00ffff;
+}
+/* Animasi fade-in dan slide-in untuk slider Fun Fact */
+@keyframes funFactFadeIn {
+    0% {
+        opacity: 0; /* Awalnya tidak terlihat */
+        transform: translateY(20px); /* Geser sedikit ke bawah */
+    }
+    100% {
+        opacity: 1; /* Sepenuhnya terlihat */
+        transform: translateY(0); /* Kembali ke posisi semula */
+    }
+}
+
+/* Animasi saat scroll */
+@keyframes funFactScroll {
+    0% {
+        transform: scale(0.9); /* Sedikit lebih kecil */
+        opacity: 0.5; /* Transparan */
+    }
+    100% {
+        transform: scale(1); /* Kembali ke ukuran normal */
+        opacity: 1; /* Sepenuhnya terlihat */
+    }
+}
+
+/* Terapkan animasi saat slider muncul */
+.image-slider {
+    position: absolute; /* Tetap di posisi relatif terhadap section */
+    bottom: 20px; /* Jarak dari bawah */
+    right: 20px; /* Jarak dari kanan */
+    width: 250px; /* Lebar slider lebih kecil */
+    background-color: rgba(29, 29, 29, 0.8); /* Latar belakang semi-transparan */
+    color: #ffffff; /* Warna teks */
+    border-radius: 10px; /* Sudut melengkung */
+    box-shadow: 0 4px 15px rgba(29, 29, 29, 0.3); /* Bayangan */
+    overflow: hidden; /* Sembunyikan elemen yang keluar */
+    font-family: 'Poppins', sans-serif;
+    opacity: 0; /* Awalnya tidak terlihat */
+    animation: funFactFadeIn 1s ease-in-out forwards; /* Animasi fade-in dan slide-in */
+    animation-delay: 0.5s; /* Tambahkan sedikit delay */
+}
+
+/* Kontainer gambar dan teks */
+.image-slider .slider-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 15px; /* Padding lebih kecil */
+    text-align: center;
+    animation: funFactScroll 0.8s ease-in-out; /* Animasi saat scroll */
+}
+
+/* Gambar slider */
+.image-slider img {
+    width: 100%;
+    height: 120px; /* Tinggi gambar lebih kecil */
+    object-fit: cover; /* Pastikan gambar tetap proporsional */
+    border-radius: 10px 10px 0 0; /* Sudut melengkung hanya di atas */
+    animation: funFactScroll 0.8s ease-in-out; /* Animasi saat scroll */
+}
+
+/* Teks deskripsi */
+.image-slider .description {
+    margin-top: 8px; /* Jarak lebih kecil */
+    font-size: 0.8rem; /* Ukuran teks lebih kecil */
+    line-height: 1.4;
+    animation: funFactScroll 0.8s ease-in-out; /* Animasi saat scroll */
+}
+
+/* Tombol navigasi slider */
+.image-slider .slider-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px; /* Padding lebih kecil */
+    background-color: rgba(29, 29, 29, 0.9); /* Latar belakang tombol */
+    animation: funFactScroll 0.8s ease-in-out; /* Animasi saat scroll */
+}
+
+.image-slider .slider-nav button {
+    background-color: #a009a0; /* Warna tombol */
+    color: #ffffff; /* Warna teks tombol */
+    border: none;
+    border-radius: 5px;
+    padding: 5px 8px; /* Ukuran tombol lebih kecil */
+    cursor: pointer;
+    font-size: 0.7rem; /* Ukuran teks tombol lebih kecil */
+    transition: background-color 0.3s ease;
+}
+
+.image-slider .slider-nav button:hover {
+    background-color: #a009a0; /* Ubah warna tombol saat hover */
+    color: #ffffff; /* Ubah warna teks tombol saat hover */
+    box-shadow: 0 0 20px #a009a0; /* Tambahkan efek glow */
+}
+@media (min-width: 320px) and (max-width: 767px) {
+    /* Gaya untuk perangkat mobile */
+    .main-container {
+        flex-direction: column; /* Ubah arah menjadi kolom */
+        align-items: center; /* Pusatkan konten secara horizontal */
+        padding-left: 10px; /* Tambahkan sedikit padding kiri */
+        padding-right: 10px; /* Tambahkan padding kanan */
+        padding-top: 20px; /* Tambahkan jarak dari atas */
+    }
+    .main-container .image {
+        width: 80%; /* Lebar gambar lebih kecil */
+        height: auto; /* Tinggi otomatis sesuai gambar */
+        margin-bottom: 20px; /* Tambahkan jarak bawah */
+    }
+    .main-container .content {
+        width: 100%; /* Lebar konten penuh */
+        min-height: auto; /* Hapus tinggi minimum */
+        padding: 15px; /* Tambahkan padding */
+        text-align: center; /* Pusatkan teks */
+    }
+    .main-container .content h1 {
+        font-size: 1.8rem; /* Ukuran teks lebih besar */
+        line-height: 1.4; /* Tambahkan jarak antar baris */
+        word-wrap: break-word; /* Bungkus kata panjang */
+    }
+    .main-container .content p {
+        font-size: 1rem; /* Ukuran teks lebih besar */
+        line-height: 1.6; /* Tambahkan jarak antar baris */
+        margin: 10px 0; /* Tambahkan jarak atas dan bawah */
+        text-align: justify; /* Rata kanan-kiri */
+    }
+    .social-links i {
+        width: 2.5rem; /* Ukuran ikon lebih kecil */
+        height: 2.5rem; /* Ukuran ikon lebih kecil */
+        font-size: 1.2rem; /* Ukuran teks/icon lebih kecil */
+    }
+    .content button {
+        width: 50%; /* Lebar tombol lebih besar */
+        height: 60px; /* Tinggi tombol lebih besar */
+        margin: 20px auto; /* Pusatkan tombol */
+        background-color: #a009a0;
+        color: #ffffff;
+        border: 1px solid #a009a0;
+        outline: none;
+        font-size: 1rem; /* Ukuran teks lebih besar */
+        font-weight: 700;
+        border-radius: 5px;
+        transition: 0.2s linear;
+        animation: pulse 1.5s infinite; /* Tambahkan animasi denyut nadi */
+    }
+    .nav-container .links a {
+        position: relative;
+        font-size: 1rem;
+        color: white;
+        margin: 10px 0; /* Tambahkan jarak vertikal */
+        text-decoration: none;
+        font-weight: 400;
+        transition: 0.3s linear;
+        padding-left: 10px; /* Tambahkan jarak dari kiri */
+        padding-right: 10px; /* Tambahkan jarak dari kanan */
+        text-align: center; /* Pusatkan teks */
+        display: block; /* Tampilkan link secara vertikal */
+    }
+    /* Gaya untuk section Project */
+#project {
+    width: 100%;
+    padding: 100px 20px; /* Tambahkan padding atas dan bawah */
+    background-color: #1d1d1d; /* Warna latar belakang */
+    text-align: center;
+    box-sizing: border-box;
+    margin-top: 10vh; /* Tambahkan margin atas untuk menghindari tumpang tindih */
+    margin-bottom: 50px; /* Tambahkan jarak bawah untuk memberi ruang ke footer */
+}
+
+/* Gaya untuk judul */
+#project .center-text h2 {
+    font-size: 2rem;
+    color: #ffffff;
+    margin-bottom: 30px;
+    margin-top: 40px; /* Tambahkan jarak atas */
+}
+
+#project .center-text h2 span {
+    color: #a009a0; /* Warna aksen */
+}
+
+/* Kontainer untuk project */
+#project .project-content {
+    display: flex;
+    justify-content: center;
+    gap: 30px; /* Jarak antar box */
+    flex-wrap: wrap; /* Agar responsif */
+}
+
+/* Gaya untuk setiap box project */
+#project .project-box {
+    background-color: rgba(0, 0, 0, 0.1); /* Transparansi */
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    padding: 20px; /* Tambahkan padding seperti about box */
+    width: 300px; /* Lebar tetap untuk setiap box */
+    text-align: left;
+    border: 2px solid #a009a0; /* Tambahkan border */
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+    color: #fff; /* Warna teks putih agar kontras dengan latar belakang */
+}
+
+/* Efek hover untuk box project */
+#project .project-box:hover {
+    transform: scale(1); /* Perbesar box saat hover */
+    color: #a009a0; /* Ubah warna teks */
+    border: 2px solid #a009a0; /* Tambahkan border */
+    background-color: transparent; /* Ubah latar belakang menjadi transparan */
+    font-weight: 700; /* Tambahkan ketebalan teks */
+    box-shadow: 0 0 40px #a009a0; /* Tambahkan efek glow */
+}
+
+/* Gaya untuk gambar di dalam project box */
+#project .project-box img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover; /* Pastikan gambar tetap proporsional */
+    border-radius: 10px; /* Tambahkan sudut melengkung */
+    margin-bottom: 15px; /* Tambahkan jarak bawah gambar */
+}
+
+/* Gaya untuk judul project */
+#project .project-info h3 {
+    font-size: 1.5rem;
+    color: #ffffff;
+    margin-bottom: 10px;
+}
+
+/* Gaya untuk deskripsi project */
+#project .project-info p {
+    font-size: 1rem;
+    color: #ffffff;
+    line-height: 1.6;
+    margin-bottom: 15px;
+}
+
+/* Gaya untuk kategori project */
+#project .project-info .project-category {
+    font-size: 0.9rem;
+    color: #a009a0; /* Warna aksen */
+    margin-bottom: 5px;
+}
+
+/* Gaya untuk tanggal project */
+#project .project-info small {
+    font-size: 0.8rem;
+    color: #ffffff;
+}
+/* Gaya untuk section Project */
+#project {
+    width: 100%;
+    padding: 100px 20px; /* Tambahkan padding atas dan bawah */
+    background-color: #1d1d1d; /* Warna latar belakang */
+    text-align: center;
+    box-sizing: border-box;
+    margin-top: 10vh; /* Tambahkan margin atas untuk menghindari tumpang tindih */
+    margin-bottom: 100px; /* Tambahkan jarak bawah untuk memberi ruang ke footer */
+}
+
+/* Gaya untuk footer */
+footer {
+    background-color: #1b1b1b; /* Warna latar belakang footer */
+    color: #fff; /* Warna teks footer */
+    text-align: center; /* Pusatkan teks */
+    padding: 20px 0; /* Tambahkan ruang di atas dan bawah */
+    font-size: 1rem; /* Ukuran teks */
+    display: none;
+    margin-top: 50px; /* Tambahkan jarak dari konten sebelumnya */
+    position: relative; /* Pastikan footer tidak menutupi elemen lain */
+    z-index: 1; /* Pastikan footer berada di atas elemen lainnya */
+}
+.back-to-top {
+    position: fixed;
+    bottom: 30px; /* Jarak dari bawah */
+    right: 30px; /* Jarak dari kanan */
+    width: 50px;
+    height: 50px;
+    background-color: #a009a0; /* Warna latar belakang */
+    color: #fff; /* Warna ikon */
+    border-radius: 50%; /* Membuat tombol berbentuk lingkaran */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Tambahkan bayangan */
+    opacity: 0; /* Awalnya tombol tidak terlihat */
+    visibility: hidden; /* Sembunyikan tombol */
+    transition: opacity 0.3s ease, visibility 0.3s ease; /* Transisi halus */
+    z-index: 1000; /* Pastikan tombol berada di atas elemen lainnya */
+    display: none;
+}
+
+/* Tampilkan tombol saat aktif */
+.back-to-top.show {
+    opacity: 1;
+    visibility: visible;
+}
+    /* Pusatkan Fun Fact di mode handphone setelah Contact Me */
+    .image-slider {
+        position: relative; /* Ubah posisi menjadi relatif */
+        margin: 20px auto; /* Pusatkan elemen secara horizontal */
+        bottom: 0; /* Hilangkan jarak dari bawah */
+        right: 0; /* Hilangkan jarak dari kanan */
+        width: 90%; /* Lebar slider lebih kecil untuk perangkat kecil */
+        max-width: 400px; /* Tetapkan lebar maksimum */
+    }
+
+    .image-slider img {
+        height: auto; /* Sesuaikan tinggi gambar secara otomatis */
+    }
+
+    .image-slider .slider-content {
+        padding: 10px; /* Kurangi padding untuk perangkat kecil */
+    }
+
+    .image-slider .slider-nav {
+        padding: 5px; /* Kurangi padding tombol navigasi */
+    }
+
+    .image-slider .slider-nav button {
+        font-size: 0.8rem; /* Ukuran tombol lebih kecil */
+        padding: 5px 10px; /* Sesuaikan ukuran tombol */
+    }
+
+nav {
+    width: 100%;
+    height: 10vh;
+    position: fixed; /* Membuat navbar tetap di atas saat scroll */
+    top: 0; /* Tetap berada di bagian atas halaman */
+    z-index: 1000; /* Pastikan navbar berada di atas elemen lainnya */
+    background-color: rgba(27, 27, 27, 0.8); /* Warna latar belakang dengan transparansi */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Tambahkan bayangan */
+    transform: translateY(-100%); /* Awalnya navbar berada di luar layar (atas) */
+    opacity: 0; /* Awalnya navbar tidak terlihat */
+    display: none;
+    transition: transform 0.5s ease, opacity 0.5s ease; /* Transisi halus */
+}
+
+nav.show {
+    transform: translateY(0); /* Navbar masuk ke posisi semula */
+    opacity: 1; /* Navbar terlihat */
+}
+.nav-container{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding-right: 150px;
+}
+}
